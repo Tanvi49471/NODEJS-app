@@ -1,0 +1,22 @@
+
+{
+  "name": "pmpml-bus-tracker",
+  "version": "1.0.0",
+  "description": "Simple PMPML Bus Tracker built with Node.js and Express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "pmpml",
+    "bus-tracker"
+  ],
+  "author": "Tanvi Waghmare",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
