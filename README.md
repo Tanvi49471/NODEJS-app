@@ -89,17 +89,6 @@ http://localhost:3000/api/buses/101
 POST /api/buses
 ```
 
-Example JSON:
-
-```json
-{
-  "number": "106",
-  "from": "Wakad",
-  "to": "Swargate",
-  "type": "AC",
-  "status": "On Time"
-}
-```
 
 ## How the Project Works
 
@@ -117,17 +106,9 @@ Bus Data
 
 The bus data is currently stored in the application itself, so no separate database is required.
 
-## Future Improvements
+## Project Screenshot
 
-Some features that can be added later:
-
-- MySQL or MongoDB database
-- Live bus location
-- Bus route map
-- User login
-- Admin dashboard
-- Real-time bus status
-- Search and filter options
+![Node.js PMPML Bus Tracker](Screenshot/nodejs.png)
 
 ## Author
 
