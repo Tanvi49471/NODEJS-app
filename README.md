@@ -108,7 +108,7 @@ The bus data is currently stored in the application itself, so no separate datab
 
 ## Project Screenshot
 
-![Node.js PMPML Bus Tracker](Screenshot/nodejs.png)
+![Node.js PMPML Bus Tracker](nodejs.png)
 
 ## Author
 
