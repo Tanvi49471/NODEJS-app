@@ -1,0 +1,75 @@
+/* PMPML tracker page styles */
+:root {
+    --primary: #1769e0;
+    --dark: #10233f;
+    --success: #166534;
+    --warning: #856404;
+    --background: #f4f7fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--dark);
+    background: var(--background);
+}
+
+.container {
+    width: min(1100px, calc(100% - 32px));
+    margin: 32px auto;
+}
+
+.card {
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(16, 35, 63, 0.08);
+}
+
+.status {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: var(--success);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status.delayed {
+    background: #fff3cd;
+    color: var(--warning);
+}
+
+button,
+.btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 18px;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover,
+.btn:hover {
+    filter: brightness(0.92);
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: min(100% - 20px, 1100px);
+        margin-top: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+}
