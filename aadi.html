@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #eff6ff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, var(--light), #dbeafe);
+        }
+
+        .card {
+            width: min(520px, calc(100% - 32px));
+            padding: 44px 36px;
+            text-align: center;
+            border-radius: 24px;
+            background: white;
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            color: var(--dark);
+            font-size: clamp(32px, 8vw, 48px);
+        }
+
+        p {
+            margin: 0 0 24px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        button {
+            border: 0;
+            border-radius: 12px;
+            padding: 14px 22px;
+            background: var(--primary);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Welcome, Aadi! 👋</h1>
+        <p>This is a simple and responsive welcome page for the PMPML project.</p>
+        <button id="welcomeButton">Continue</button>
+    </div>
+
+    <script>
+        document.getElementById("welcomeButton").addEventListener("click", function () {
+            alert("Welcome to the PMPML Bus Tracker!");
+        });
+    </script>
+</body>
+</html>
