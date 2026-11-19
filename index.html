@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMPML Bus Tracker</title>
+    <style>
+        :root {
+            --navy: #10233f;
+            --blue: #1769e0;
+            --green: #16a085;
+            --light: #f4f7fb;
+            --text: #1e293b;
+            --muted: #64748b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 10% 10%, rgba(23, 105, 224, 0.08), transparent 25%),
+                var(--light);
+        }
+
+        header {
+            background: var(--navy);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: var(--green);
+            font-size: 23px;
+        }
+
+        nav { display: flex; gap: 28px; }
+        nav a { color: #dbe7f7; text-decoration: none; font-weight: 600; }
+        nav a:hover { color: white; }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 44px 24px 60px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            margin: 0 0 14px;
+            font-size: clamp(36px, 5vw, 60px);
+            line-height: 1.05;
+            color: var(--navy);
+        }
+
+        .hero h1 span { color: var(--blue); }
+        .hero p { color: var(--muted); font-size: 18px; line-height: 1.7; }
+
+        .search-box {
+            display: flex;
+            background: white;
+            border: 1px solid #dde6f1;
+            border-radius: 16px;
+            padding: 8px;
+            box-shadow: 0 14px 40px rgba(16, 35, 63, 0.10);
+        }
+
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            border: 0;
+            outline: 0;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            border: 0;
+            border-radius: 11px;
+            background: var(--blue);
+            color: white;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 22px 0 34px;
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid #e8eef6;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 8px 24px rgba(16, 35, 63, 0.05);
+        }
+
+        .stat strong { display: block; color: var(--navy); font-size: 30px; }
+        .stat span { color: var(--muted); }
+
+        .section-title { margin-bottom: 18px; color: var(--navy); }
+
+        .buses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .bus-card {
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+            border: 1px solid #e8eef6;
+            box-shadow: 0 10px 30px rgba(16, 35, 63, 0.07);
+        }
+
+        .bus-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bus-number {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: #eaf2ff;
+            color: var(--blue);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .status {
+            border-radius: 999px;
+            padding: 7px 11px;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .status.delayed { background: #fff3cd; color: #856404; }
+
+        .route {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0 8px;
+            font-weight: 800;
+        }
+
+        .route-line { flex: 1; border-top: 2px dashed #cbd5e1; }
+        .bus-card p { margin: 8px 0 0; color: var(--muted); }
+
+        @media (max-width: 760px) {
+            nav { display: none; }
+            .hero { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <div class="brand-icon">🚌</div>
+            PMPML Tracker
+        </div>
+        <nav>
+            <a href="#routes">Routes</a>
+            <a href="#status">Status</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <h1>Track your bus, <span>right on time.</span></h1>
+                <p>Find routes and check live bus status across Pune with a simple, fast tracker.</p>
+                <form class="search-box">
+                    <input type="text" aria-label="Search route" placeholder="Search route or bus number">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div>
+                <div class="bus-card">
+                    <div class="bus-head">
+                        <div class="bus-number">101</div>
+                        <span class="status">On Time</span>
+                    </div>
+                    <div class="route">
+                        <span>Swargate</span>
+                        <span class="route-line"></span>
+                        <span>Hinjewadi</span>
+                    </div>
+                    <p>AC bus · Arrives in 6 minutes</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="status">
+            <div class="stats">
+                <div class="stat"><strong>3</strong><span>Active buses</span></div>
+                <div class="stat"><strong>2</strong><span>Running on time</span></div>
+                <div class="stat"><strong>1</strong><span>Delayed</span></div>
+            </div>
+
+            <h2 class="section-title" id="routes">Available buses</h2>
+            <div class="buses">
+                <article class="bus-card">
+                    <div class="bus-head">
+                        <div class="bus-number">101</div>
+                        <span class="status">On Time</span>
+                    </div>
+                    <div class="route"><span>Swargate</span><span class="route-line"></span><span>Hinjewadi</span></div>
+                    <p>AC · Bus 101</p>
+                </article>
+
+                <article class="bus-card">
+                    <div class="bus-head">
+                        <div class="bus-number">102</div>
+                        <span class="status delayed">Delayed</span>
+                    </div>
+                    <div class="route"><span>Katraj</span><span class="route-line"></span><span>Pune Station</span></div>
+                    <p>Non-AC · Bus 102</p>
+                </article>
+
+                <article class="bus-card">
+                    <div class="bus-head">
+                        <div class="bus-number">103</div>
+                        <span class="status">On Time</span>
+                    </div>
+                    <div class="route"><span>Hadapsar</span><span class="route-line"></span><span>Shivajinagar</span></div>
+                    <p>AC · Bus 103</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.querySelector(".search-box").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const value = event.currentTarget.querySelector("input").value.trim();
+            if (value) alert("Searching for: " + value);
+        });
+    </script>
+</body>
+</html>
